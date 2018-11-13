@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  CAShapLayerBezierAnimation
 //
-//  Created by 杨彤 on 2018/11/13.
+//  Created by yangtong on 2018/11/13.
 //  Copyright © 2018年 JJXT. All rights reserved.
 //
 
