@@ -14,7 +14,8 @@ typedef NS_ENUM(NSInteger,BtnTyle) {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProgressBtn : UIButton
-- (instancetype)initWithFrame:(CGRect)frame yt_addRunProgressAnimationWith:(CGSize)btnSize bottomColor:(UIColor *)bottomColor progressColor:(UIColor *)progressColor time:(NSInteger)time btnTyle:(BtnTyle)tyle;
+@property (nonatomic,copy)void (^skipBlock) (void);
+- (instancetype)initWithFrame:(CGRect)frame yt_addRunProgressAnimationWithBottomColor:(UIColor *)bottomColor progressColor:(UIColor *)progressColor time:(NSInteger)time btnTyle:(BtnTyle)tyle;
 @end
 
 NS_ASSUME_NONNULL_END

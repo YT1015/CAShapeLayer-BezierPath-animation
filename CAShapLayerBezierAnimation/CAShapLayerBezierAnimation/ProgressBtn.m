@@ -13,19 +13,11 @@ dispatch_source_t _times;
 @end
 @implementation ProgressBtn
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
-- (instancetype)initWithFrame:(CGRect)frame yt_addRunProgressAnimationWith:(CGSize)btnSize bottomColor:(UIColor *)bottomColor progressColor:(UIColor *)progressColor time:(NSInteger)time btnTyle:(BtnTyle)tyle{
+- (instancetype)initWithFrame:(CGRect)frame yt_addRunProgressAnimationWithBottomColor:(UIColor *)bottomColor progressColor:(UIColor *)progressColor time:(NSInteger)time btnTyle:(BtnTyle)tyle{
     if (self=[super initWithFrame:frame]) {
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.titleLabel setFont:[UIFont systemFontOfSize:14]];
-        self.layer.cornerRadius=btnSize.width/2.0;
+        self.layer.cornerRadius=frame.size.width/2.0;
         self.layer.masksToBounds=YES;
         //设置底层的layer
         CAShapeLayer *bottomLayer=[[CAShapeLayer alloc] init];
@@ -39,7 +31,7 @@ dispatch_source_t _times;
         //绘制底层layer的路径
         UIBezierPath *bottomPath=[UIBezierPath bezierPath];
         
-        [bottomPath addArcWithCenter:CGPointMake(btnSize.width/2.0, btnSize.height/2.0) radius:btnSize.width/2.0 startAngle:0 endAngle:M_PI*2 clockwise:YES];
+        [bottomPath addArcWithCenter:CGPointMake(frame.size.width/2.0, frame.size.width/2.0) radius:frame.size.width/2.0 startAngle:0 endAngle:M_PI*2 clockwise:YES];
         
         bottomLayer.path=bottomPath.CGPath;
         
@@ -57,7 +49,7 @@ dispatch_source_t _times;
         //绘制底层layer的路径
         UIBezierPath * progressPath=[UIBezierPath bezierPath];
         
-        [progressPath addArcWithCenter:CGPointMake(btnSize.width/2.0, btnSize.height/2.0) radius:btnSize.width/2.0 startAngle:-M_PI/2 endAngle:M_PI*3/2.0 clockwise:YES];
+        [progressPath addArcWithCenter:CGPointMake(frame.size.width/2.0, frame.size.height/2.0) radius:frame.size.width/2.0 startAngle:-M_PI/2 endAngle:M_PI*3/2.0 clockwise:YES];
         
         progressLayer.path=progressPath.CGPath;
         
@@ -88,6 +80,7 @@ dispatch_source_t _times;
         }else{//跳过
             [self setTitle:@"跳过" forState:UIControlStateNormal];
         }
+        [self addTarget:self action:@selector(skipAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -110,8 +103,16 @@ dispatch_source_t _times;
     return animation;
 }
 
+- (void)skipAction{
+    if (self.skipBlock) {
+        self.skipBlock();
+    }
+}
+
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    NSLog(@"结束了");
+    if (self.skipBlock) {
+        self.skipBlock();
+    }
 }
 
 @end
