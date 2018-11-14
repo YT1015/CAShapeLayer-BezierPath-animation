@@ -7,7 +7,10 @@
 //
 
 #import "ProgressBtn.h"
-
+@interface ProgressBtn()<CAAnimationDelegate>{
+dispatch_source_t _times;
+}
+@end
 @implementation ProgressBtn
 
 /*
@@ -65,12 +68,12 @@
         if (tyle==BtnTyleTimes) {//倒计时
             __block NSInteger total=time;
             dispatch_queue_t queue=dispatch_get_global_queue(0, 0);
-            dispatch_source_t times=dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-            dispatch_source_set_timer(times, DISPATCH_TIME_NOW, 1*NSEC_PER_SEC, 0);
+           _times=dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+            dispatch_source_set_timer(_times, DISPATCH_TIME_NOW, 1*NSEC_PER_SEC, 0);
             //        __strong typeof(times) stroTimes=times;
-            dispatch_source_set_event_handler(times, ^{
+            dispatch_source_set_event_handler(_times, ^{
                 if (total<=0) {
-                    dispatch_source_cancel(times);
+                    dispatch_source_cancel(self->_times);
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self setTitle:@"跳过" forState:UIControlStateNormal];
                     });
@@ -81,7 +84,7 @@
                     });
                 }
             });
-            dispatch_resume(times);
+            dispatch_resume(_times);
         }else{//跳过
             [self setTitle:@"跳过" forState:UIControlStateNormal];
         }
@@ -100,8 +103,15 @@
     
     animation.fillMode=kCAFillModeForwards;
     
+    animation.delegate=self;
+    
     animation.removedOnCompletion=NO;
     
     return animation;
 }
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    NSLog(@"结束了");
+}
+
 @end
