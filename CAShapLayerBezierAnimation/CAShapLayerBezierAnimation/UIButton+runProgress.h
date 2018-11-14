@@ -13,9 +13,9 @@ typedef NS_ENUM(NSInteger,BtnTyle) {
 };
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIButton (runProgress)
+@interface UIButton (runProgress)<CAAnimationDelegate>
 //@property (nonatomic,strong) dispatch_source_t times;
-- (void)yt_addRunProgressAnimationWith:(CGSize)btnSize bottomColor:(UIColor *)bottomColor progressColor:(UIColor *)progressColor time:(CGFloat)time btnTyle:(BtnTyle)tyle;
+- (void)yt_addRunProgressAnimationWith:(CGSize)btnSize bottomColor:(UIColor *)bottomColor progressColor:(UIColor *)progressColor time:(NSInteger)time btnTyle:(BtnTyle)tyle;
 @end
 
 NS_ASSUME_NONNULL_END

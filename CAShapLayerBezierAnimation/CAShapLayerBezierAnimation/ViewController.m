@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     
-    UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *btn=[[UIButton alloc] init];
     
     btn.frame=CGRectMake(100, 100, 60, 60);
     

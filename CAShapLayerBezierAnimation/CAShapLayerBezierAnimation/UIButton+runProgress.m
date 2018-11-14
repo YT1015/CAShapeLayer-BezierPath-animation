@@ -14,8 +14,9 @@
 //}
 //@end
 @implementation UIButton (runProgress)
-- (void)yt_addRunProgressAnimationWith:(CGSize)btnSize bottomColor:(UIColor *)bottomColor progressColor:(UIColor *)progressColor time:(CGFloat)time btnTyle:(BtnTyle)tyle{
-    [self setBackgroundColor:[UIColor greenColor]];
+- (void)yt_addRunProgressAnimationWith:(CGSize)btnSize bottomColor:(UIColor *)bottomColor progressColor:(UIColor *)progressColor time:(NSInteger)time btnTyle:(BtnTyle)tyle{
+//    [self setBackgroundColor:[UIColor greenColor]];
+    [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.titleLabel setFont:[UIFont systemFontOfSize:14]];
     self.layer.cornerRadius=btnSize.width/2.0;
     self.layer.masksToBounds=YES;
@@ -31,7 +32,7 @@
     //绘制底层layer的路径
     UIBezierPath *bottomPath=[UIBezierPath bezierPath];
     
-    [bottomPath addArcWithCenter:CGPointMake(btnSize.width/2.0, btnSize.height/2.0) radius:btnSize.width/2.0 startAngle:0 endAngle:0 clockwise:YES];
+    [bottomPath addArcWithCenter:CGPointMake(btnSize.width/2.0, btnSize.height/2.0) radius:btnSize.width/2.0 startAngle:0 endAngle:M_PI*2 clockwise:YES];
     
     bottomLayer.path=bottomPath.CGPath;
     
@@ -51,29 +52,32 @@
     
     [progressPath addArcWithCenter:CGPointMake(btnSize.width/2.0, btnSize.height/2.0) radius:btnSize.width/2.0 startAngle:-M_PI/2 endAngle:M_PI*3/2.0 clockwise:YES];
     
+    progressLayer.path=progressPath.CGPath;
+    
     [self.layer addSublayer:progressLayer];
     
     [progressLayer addAnimation:[self layerAnimationWith:time] forKey:@"progressAnimation"];
     
     if (tyle==BtnTyleTimes) {//倒计时
-//        __block CGFloat total=time;
-//        dispatch_queue_t queue=dispatch_get_global_queue(0, 0);
-//        _times=dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-//        dispatch_source_set_timer(times, DISPATCH_TIME_NOW, 1*NSEC_PER_SEC, 0);
-//        dispatch_source_set_event_handler(times, ^{
-//            if (total<=0) {
-//                dispatch_source_cancel(times);
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self setTitle:@"跳过" forState:UIControlStateNormal];
-//                });
-//            }else{
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self setTitle:[NSString stringWithFormat:@"%f.0s",total] forState:UIControlStateNormal];
-//                    total--;
-//                });
-//            }
-//        });
-//        dispatch_resume(times);
+        __block NSInteger total=time;
+        dispatch_queue_t queue=dispatch_get_global_queue(0, 0);
+        dispatch_source_t times=dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+        dispatch_source_set_timer(times, DISPATCH_TIME_NOW, 1*NSEC_PER_SEC, 0);
+//        __strong typeof(times) stroTimes=times;
+        dispatch_source_set_event_handler(times, ^{
+            if (total<=0) {
+                dispatch_source_cancel(times);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self setTitle:@"跳过" forState:UIControlStateNormal];
+                });
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self setTitle:[NSString stringWithFormat:@"%lds",total] forState:UIControlStateNormal];
+                    total--;
+                });
+            }
+        });
+        dispatch_resume(times);
     }else{//跳过
         [self setTitle:@"跳过" forState:UIControlStateNormal];
     }
