@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "UIButton+runProgress.h"
+#import "ProgressBtn.h"
 @interface ViewController ()
 
 @end
@@ -19,13 +19,13 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     
-    UIButton *btn=[[UIButton alloc] init];
+//    UIButton *btn=[[UIButton alloc] init];
+//
+//    btn.frame=CGRectMake(100, 100, 60, 60);
     
-    btn.frame=CGRectMake(100, 100, 60, 60);
-    
+
+    ProgressBtn *btn=[[ProgressBtn alloc] initWithFrame:CGRectMake(100, 100, 60, 60) yt_addRunProgressAnimationWith:CGSizeMake(60, 60) bottomColor:[UIColor lightGrayColor] progressColor:[UIColor redColor] time:6 btnTyle:BtnTyleTimes];
     [self.view addSubview:btn];
-    
-    [btn yt_addRunProgressAnimationWith:CGSizeMake(60, 60) bottomColor:[UIColor lightGrayColor] progressColor:[UIColor redColor] time:6 btnTyle:BtnTyleTimes];
 //    [self.view setBackgroundColor:[uic]]
     
 }

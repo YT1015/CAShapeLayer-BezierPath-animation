@@ -15,7 +15,7 @@
 		717C70B7219ABE6B00F2BAAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 717C70B6219ABE6B00F2BAAF /* main.m */; };
 		717C70C1219ABE6C00F2BAAF /* CAShapLayerBezierAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 717C70C0219ABE6C00F2BAAF /* CAShapLayerBezierAnimationTests.m */; };
 		717C70CC219ABE6C00F2BAAF /* CAShapLayerBezierAnimationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 717C70CB219ABE6C00F2BAAF /* CAShapLayerBezierAnimationUITests.m */; };
-		717C70DB219AC06B00F2BAAF /* UIButton+runProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 717C70DA219AC06B00F2BAAF /* UIButton+runProgress.m */; };
+		71D2F3D7219BF40C00691BDF /* ProgressBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D2F3D6219BF40C00691BDF /* ProgressBtn.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +52,8 @@
 		717C70C7219ABE6C00F2BAAF /* CAShapLayerBezierAnimationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CAShapLayerBezierAnimationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		717C70CB219ABE6C00F2BAAF /* CAShapLayerBezierAnimationUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAShapLayerBezierAnimationUITests.m; sourceTree = "<group>"; };
 		717C70CD219ABE6C00F2BAAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		717C70D9219AC06B00F2BAAF /* UIButton+runProgress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+runProgress.h"; sourceTree = "<group>"; };
-		717C70DA219AC06B00F2BAAF /* UIButton+runProgress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+runProgress.m"; sourceTree = "<group>"; };
+		71D2F3D5219BF40C00691BDF /* ProgressBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressBtn.h; sourceTree = "<group>"; };
+		71D2F3D6219BF40C00691BDF /* ProgressBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressBtn.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +106,8 @@
 			children = (
 				717C70A7219ABE5700F2BAAF /* AppDelegate.h */,
 				717C70A8219ABE5700F2BAAF /* AppDelegate.m */,
-				717C70D9219AC06B00F2BAAF /* UIButton+runProgress.h */,
-				717C70DA219AC06B00F2BAAF /* UIButton+runProgress.m */,
+				71D2F3D5219BF40C00691BDF /* ProgressBtn.h */,
+				71D2F3D6219BF40C00691BDF /* ProgressBtn.m */,
 				717C70AA219ABE5700F2BAAF /* ViewController.h */,
 				717C70AB219ABE5700F2BAAF /* ViewController.m */,
 				717C70AD219ABE5700F2BAAF /* Main.storyboard */,
@@ -267,8 +267,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				717C70DB219AC06B00F2BAAF /* UIButton+runProgress.m in Sources */,
 				717C70AC219ABE5700F2BAAF /* ViewController.m in Sources */,
+				71D2F3D7219BF40C00691BDF /* ProgressBtn.m in Sources */,
 				717C70B7219ABE6B00F2BAAF /* main.m in Sources */,
 				717C70A9219ABE5700F2BAAF /* AppDelegate.m in Sources */,
 			);
